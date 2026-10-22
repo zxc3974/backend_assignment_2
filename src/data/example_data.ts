@@ -1,10 +1,17 @@
-export interface Ticket {
+interface Ticket {
   id: number;
   title: string;
   description: string;
   priority: 'critical' | 'high' | 'medium' | 'low';
   status: 'open' | 'in-progress' | 'resolved';
   createdAt: string;
+}
+
+export interface HealthCheckResponse {
+    status: string;
+    uptime: number;
+    timestamp: string;
+    version: string;
 }
 
 export const sampleTickets: Ticket[] = [

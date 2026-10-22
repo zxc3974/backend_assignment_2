@@ -1,11 +1,11 @@
 import express from "express";
+import router from "./api/v1/routes/route.js"
 
 const app = express();
-
 app.use(express.json());
 
-app.get("/api/v1/health", (req, res) => {
-  res.json({ status: "ok" });
-});
+app.use(router)
+
+
 
 export default app;
