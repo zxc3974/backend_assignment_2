@@ -12,3 +12,10 @@ export function healthCheck(): HealthCheckResponse{
 export function getTickets() {
     return sampleTickets;
 }
+
+export function getSpecificTickets(){
+    return {
+        message: "Ticket urgency calculated",
+        data: 
+    }
+}
