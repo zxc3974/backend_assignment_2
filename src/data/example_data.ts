@@ -7,11 +7,24 @@ interface Ticket {
   createdAt: string;
 }
 
+export interface TicketUrgency {
+  message: string,
+  data: {
+    title: string,
+    priority: string,
+    status: string,
+    createdAt: string,
+    ticketAge: number,
+    urgencyScore: number,
+    urgencyLevel: string
+  }
+}
+
 export interface HealthCheckResponse {
-    status: string;
-    uptime: number;
-    timestamp: string;
-    version: string;
+  status: string;
+  uptime: number;
+  timestamp: string;
+  version: string;
 }
 
 export const sampleTickets: Ticket[] = [

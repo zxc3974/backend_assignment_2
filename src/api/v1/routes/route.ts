@@ -11,6 +11,9 @@ router.get("/api/v1/tickets", (req, res) => {
     getTicketsController(req, res);
 });
 
+router.get("/api/v1/tickets/:id/urgency", (req,res)=>{
+    const id = Number(req.params.id)
+})
 
 
 
