@@ -18,6 +18,13 @@ export function getTicketsController(req: Request, res: Response) {
 }
 
 export function getSpecificTicketsController(req: Request, res: Response) {
-
-    res.json(getSpecificTickets(Number(req.params.id)))
+    const result = getSpecificTickets(Number(req.params.id))
+    if (result) {
+        res.json(getSpecificTickets(Number(req.params.id)))
+    } else {
+        return res.json({
+            message: "Ticket not found."
+        })
+    }
+    
 }
