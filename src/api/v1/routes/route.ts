@@ -15,7 +15,4 @@ router.get("/api/v1/tickets/:id/urgency", (req,res)=>{
     getSpecificTicketsController(req, res)
 })
 
-
-
-
 export default router

@@ -26,5 +26,4 @@ export function getSpecificTicketsController(req: Request, res: Response) {
             message: "Ticket not found."
         })
     }
-    
 }
