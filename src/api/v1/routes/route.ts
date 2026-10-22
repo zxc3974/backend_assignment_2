@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getTicketsController,healthCheckController } from "../controllers/tickets.controllers.js";
+import { getSpecificTicketsController, getTicketsController,healthCheckController } from "../controllers/tickets.controllers.js";
 
 const router = Router()
 
@@ -12,7 +12,7 @@ router.get("/api/v1/tickets", (req, res) => {
 });
 
 router.get("/api/v1/tickets/:id/urgency", (req,res)=>{
-    const id = Number(req.params.id)
+    getSpecificTicketsController(req, res)
 })
 
 

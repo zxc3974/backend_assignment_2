@@ -22,7 +22,8 @@ export function getSpecificTickets(id: number) {
 
     type Priority = 'critical' | 'high' | 'medium' | 'low';
 
-    const ticketAge = new Date(targetRecord.createdAt).getTime() - new Date("2025-01-10T10:00:00.000Z").getTime()
+    const ticketAge = (new Date("2025-01-15T10:00:00.000Z").getTime() - new Date(targetRecord.createdAt).getTime()) / (24 * 60 * 60 * 1000)
+    const urgencyScore = ticketAge * 5 + getBaseScore(targetRecord.priority)
 
     function getBaseScore(priority: Priority) {
         switch (priority) {
@@ -37,28 +38,35 @@ export function getSpecificTickets(id: number) {
         }
     }
 
+    function getUrgencyLevel(urgencyScore: number) {
+        if (urgencyScore === 0) {
+            return "Minimal. Ticket resolved."
+        } else if (urgencyScore <= 25) {
+            return "Low urgency, Address when capacity allows."
+        } else if (urgencyScore < 50) {
+            return "Moderate. Schedule for attention."
+        } else if (urgencyScore < 80) {
+            return "High urgency. Prioritize resolution."
+        } else {
+            return "Critical. Immediate attention required."
+        }
 
-
-
-
-    const message: string = "fsdf"
+    }
 
     const ticketUrgency: TicketUrgency = {
-        message: message,
+        message: "Ticket urgency calculated",
         data: {
             title: targetRecord.title,
             priority: targetRecord.priority,
             status: targetRecord.status,
             createdAt: targetRecord.createdAt,
             ticketAge: ticketAge,
-            urgencyScore: Number(getBaseScore(targetRecord.priority))
-
+            urgencyScore: urgencyScore,
+            urgencyLevel: getUrgencyLevel(urgencyScore)
         }
     }
 
-
-
-    return
+    return ticketUrgency
 
 
 
