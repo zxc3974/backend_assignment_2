@@ -84,6 +84,7 @@ export function createTickets(input: { title: string; description: string; prior
     }
 
     sampleTickets.push(newTicket)
+    
     return newTicket
 
 }

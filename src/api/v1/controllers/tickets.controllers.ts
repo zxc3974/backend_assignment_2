@@ -29,9 +29,10 @@ export function getSpecificTicketsController(req: Request, res: Response) {
 
 export function postCreateTickets(req: Request, res: Response) {
 
-    const { title, description, priority } = req.body
+    const { title, description, priority, status } = req.body
 
     const PRIORITIES = ["critical", "high", "medium", "low"] as const
+    const STATUS = ["open","in-progress","resolved"] as const
 
     if (!title) {
         return res.json({
@@ -48,6 +49,11 @@ export function postCreateTickets(req: Request, res: Response) {
             status: HTTP_STATUS.BAD_REQUEST,
             message: "Invalid priority. Must be one of: critical, high, medium, low"
         })
+    } else if (!STATUS.includes(status)) {
+        return res.json({
+            status: HTTP_STATUS.BAD_REQUEST,
+            message: "Invalid status. Must be one of: open, in-progress, resolved"
+        })
     }
 
     const newTicket = createTickets(req.body)
@@ -56,5 +62,4 @@ export function postCreateTickets(req: Request, res: Response) {
             message: "success"
         })
     }
-
 }
