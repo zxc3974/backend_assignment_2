@@ -1,3 +1,4 @@
+import { title } from "node:process";
 import { sampleTickets, HealthCheckResponse, TicketUrgency } from "../../../data/example_data.js";
 
 export function healthCheck(): HealthCheckResponse {
@@ -68,11 +69,21 @@ export function getSpecificTickets(id: number) {
 
     return ticketUrgency
 
-
-
-
-
-
 }
 
-getSpecificTickets(1)
+export function createTickets(input: { title: string; description: string; priority: "critical" | "high" | "medium" | "low" }) {
+    
+    
+    const newTicket = {
+        id: sampleTickets.length + 1,
+        title: input.title,
+        description: input.description,
+        priority: input.priority,
+        status: "open" as const,
+        createdAt: new Date().toISOString()
+    }
+
+    sampleTickets.push(newTicket)
+    return newTicket
+
+}
